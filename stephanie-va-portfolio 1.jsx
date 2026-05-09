@@ -1,0 +1,503 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Mail, MessageCircle, MapPin, DollarSign, Briefcase, CheckCircle, Star, TrendingUp, Award, Clock, Zap } from 'lucide-react';
+
+export default function PortfolioWebsite() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [hoveredService, setHoveredService] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const services = [
+    { id: 1, name: 'Lead Generation', description: 'High-quality qualified leads', icon: '🎯', benefit: 'Scale your customer base' },
+    { id: 2, name: 'Automation Workflow', description: 'Smart process automation', icon: '⚙️', benefit: 'Save 10+ hours weekly' },
+    { id: 3, name: 'Ecommerce Management', description: 'Store optimization & growth', icon: '🛍️', benefit: 'Increase sales 30%+' },
+    { id: 4, name: 'Graphic Design', description: 'Professional brand visuals', icon: '🎨', benefit: 'Stand out online' },
+    { id: 5, name: 'Social Media Management', description: 'Content & community growth', icon: '📱', benefit: 'Boost engagement 5x' },
+    { id: 6, name: 'Copywriting', description: 'Convert with words', icon: '✍️', benefit: 'Higher conversion rates' },
+    { id: 7, name: 'Email Marketing', description: 'Automated campaigns', icon: '📧', benefit: 'Generate passive revenue' },
+    { id: 8, name: 'Website Creation', description: 'Professional web presence', icon: '🌐', benefit: 'Launch in 1-2 weeks' },
+    { id: 9, name: 'Admin Tasks', description: 'Handle the details', icon: '📋', benefit: 'Focus on growth' },
+  ];
+
+  const testimonials = [
+    {
+      name: 'Maria Santos',
+      company: 'Santos Beauty Studio',
+      text: 'Stephanie increased my email list by 450 subscribers in just 2 months! Her campaigns are converting like crazy.',
+      rating: 5
+    },
+    {
+      name: 'John Reyes',
+      company: 'TechGear Pro (Shopify)',
+      text: 'My product listings went from 5 sales/week to 30+. Her SEO optimization and copywriting are top-notch!',
+      rating: 5
+    },
+    {
+      name: 'Angela Cruz',
+      company: 'StyleHub Fashion',
+      text: 'Best decision ever. She manages my entire social media now and engagement is up 280%. Worth every peso!',
+      rating: 5
+    }
+  ];
+
+  const stats = [
+    { number: '2+', label: 'Years Experience', icon: '📅' },
+    { number: '50+', label: 'Happy Clients', icon: '😊' },
+    { number: '300%', label: 'Avg Growth Rate', icon: '📈' },
+    { number: '24/7', label: 'Support Available', icon: '🎯' },
+  ];
+
+  const workExamples = [
+    {
+      title: 'BeautyBox Co. - Email Campaign',
+      category: 'Email Marketing',
+      results: '+450 subscribers | 28% open rate | $12K revenue',
+      image: `<svg viewBox="0 0 900 650" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="emailGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffd6e8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fff0f5;stop-opacity:1" />
+          </linearGradient>
+          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.2"/>
+          </filter>
+        </defs>
+        <rect width="900" height="650" fill="#f5f5f5"/>
+        <rect x="60" y="25" width="780" height="600" fill="white" rx="16" filter="url(#shadow)"/>
+        
+        <rect x="60" y="25" width="780" height="200" fill="url(#emailGrad)" rx="16"/>
+        <text x="450" y="110" font-size="52" font-weight="900" text-anchor="middle" fill="#d81b60" font-family="Georgia">SUMMER GLOW</text>
+        <text x="450" y="170" font-size="20" text-anchor="middle" fill="#888" font-family="Arial">Exclusive Collection - Limited Time 40% OFF</text>
+        
+        <rect x="120" y="260" width="660" height="90" fill="#fff3e0" rx="10" stroke="#ffb74d" stroke-width="3"/>
+        <text x="450" y="295" font-size="18" font-weight="900" text-anchor="middle" fill="#e65100" font-family="Arial">⏰ FINAL HOURS - EXPIRES TONIGHT AT MIDNIGHT</text>
+        <text x="450" y="330" font-size="16" text-anchor="middle" fill="#ff6f00" font-family="Arial">Use Exclusive Code: GLOW40 for Instant Savings</text>
+        
+        <rect x="100" y="380" width="280" height="160" fill="#fafafa" rx="10" stroke="#f0f0f0" stroke-width="2"/>
+        <rect x="100" y="380" width="280" height="110" fill="white" rx="10"/>
+        <circle cx="240" cy="420" r="40" fill="#ffccdd" stroke="#ffc0cb" stroke-width="2"/>
+        <text x="240" y="425" font-size="14" text-anchor="middle" fill="#999" font-family="Arial">Serum</text>
+        <text x="130" y="510" font-size="14" font-weight="900" fill="#d81b60" font-family="Arial">Radiant Serum</text>
+        <text x="130" y="535" font-size="11" fill="#666" font-family="Arial">Vitamin C Anti-aging</text>
+        
+        <rect x="420" y="380" width="280" height="160" fill="#fafafa" rx="10" stroke="#f0f0f0" stroke-width="2"/>
+        <rect x="420" y="380" width="280" height="110" fill="white" rx="10"/>
+        <circle cx="560" cy="420" r="40" fill="#d1c4e9" stroke="#b39ddb" stroke-width="2"/>
+        <text x="560" y="425" font-size="14" text-anchor="middle" fill="#999" font-family="Arial">Mask</text>
+        <text x="450" y="510" font-size="14" font-weight="900" fill="#d81b60" font-family="Arial">Luxury Hydro Mask</text>
+        <text x="450" y="535" font-size="11" fill="#666" font-family="Arial">Deep hydration boost</text>
+        
+        <rect x="160" y="570" width="580" height="65" fill="#d81b60" rx="10" filter="url(#shadow)"/>
+        <text x="450" y="608" font-size="18" fill="white" text-anchor="middle" font-weight="900" font-family="Arial">SHOP COLLECTION NOW ➜ CLAIM YOUR 40% DISCOUNT</text>
+      </svg>`
+    },
+    {
+      title: 'TechGear Pro - Shopify Listing',
+      category: 'Ecommerce Management',
+      results: '+150% sales | 89% ranking increase | 1000+ reviews',
+      image: `<svg viewBox="0 0 900 680" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="shadow2" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.2"/>
+          </filter>
+        </defs>
+        <rect width="900" height="680" fill="#f8f9fa"/>
+        <rect x="50" y="20" width="800" height="640" fill="white" rx="16" filter="url(#shadow2)"/>
+        
+        <rect x="50" y="20" width="320" height="380" fill="#f5f5f5" rx="16" stroke="#e0e0e0" stroke-width="2"/>
+        <circle cx="210" cy="150" r="70" fill="#e8e8e8" stroke="#ddd" stroke-width="2"/>
+        <text x="210" y="157" font-size="16" text-anchor="middle" fill="#bbb" font-family="Arial">HD Product</text>
+        <text x="210" y="200" font-size="16" text-anchor="middle" fill="#bbb" font-family="Arial">Image</text>
+        <text x="210" y="300" font-size="11" text-anchor="middle" fill="#666" font-family="Arial">Professional photography</text>
+        <text x="210" y="320" font-size="11" text-anchor="middle" fill="#666" font-family="Arial">optimized for conversion</text>
+        
+        <text x="410" y="65" font-size="28" font-weight="900" fill="#1a1a1a" font-family="Arial">PRO Gaming Headset</text>
+        <text x="410" y="100" font-size="13" fill="#666" font-family="Arial">Model: TG-X500 Pro | SKU: TG500PRO2024</text>
+        
+        <text x="410" y="145" font-size="15" fill="#d81b60" font-weight="900" font-family="Arial">★★★★★ 4.9/5 (1,200+ reviews)</text>
+        
+        <rect x="410" y="170" width="420" height="180" fill="#f9f9f9" rx="10" stroke="#e0e0e0" stroke-width="1"/>
+        <text x="430" y="200" font-size="13" font-weight="900" fill="#333" font-family="Arial">PREMIUM FEATURES:</text>
+        <text x="430" y="228" font-size="12" fill="#333" font-family="Arial">✓ 7.1 Surround Sound Technology</text>
+        <text x="430" y="250" font-size="12" fill="#333" font-family="Arial">✓ Military-Grade Noise Cancellation</text>
+        <text x="430" y="272" font-size="12" fill="#333" font-family="Arial">✓ 50-Hour Ultra Battery Life</text>
+        <text x="430" y="294" font-size="12" fill="#333" font-family="Arial">✓ Multi-Device Wireless Connectivity</text>
+        <text x="430" y="316" font-size="12" fill="#333" font-family="Arial">✓ Premium Memory Foam Cushions</text>
+        <text x="430" y="338" font-size="12" fill="#333" font-family="Arial">✓ Limited Lifetime Warranty Included</text>
+        
+        <text x="410" y="390" font-size="32" font-weight="900" fill="#d81b60" font-family="Arial">$129.99</text>
+        <text x="590" y="397" font-size="16" fill="#999" font-family="Arial" text-decoration="line-through">$299.99</text>
+        <text x="410" y="425" font-size="14" fill="#28a745" font-weight="900" font-family="Arial">⚡ 57% OFF - FLASH SALE ENDS IN 4 HOURS</text>
+        
+        <rect x="410" y="455" width="200" height="55" fill="#d81b60" rx="8" filter="url(#shadow2)"/>
+        <text x="510" y="492" font-size="16" fill="white" text-anchor="middle" font-weight="900" font-family="Arial">ADD TO CART NOW</text>
+        
+        <rect x="630" y="455" width="200" height="55" fill="white" rx="8" stroke="#d81b60" stroke-width="2"/>
+        <text x="730" y="492" font-size="14" fill="#d81b60" text-anchor="middle" font-weight="900" font-family="Arial">❤️ SAVE FOR LATER</text>
+        
+        <rect x="50" y="420" width="800" height="240" fill="#fff8f0" rx="16" stroke="#ffe0b2" stroke-width="2"/>
+        <text x="70" y="455" font-size="14" font-weight="900" fill="#333" font-family="Arial">📊 WHY CUSTOMERS LOVE THIS PRODUCT:</text>
+        <text x="70" y="490" font-size="12" fill="#555" font-family="Arial">🏆 Best-selling gaming headset 2024  |  ⭐ Recommended by 50+ tech YouTubers  |  🚀 Ships within 24 hours</text>
+        <text x="70" y="520" font-size="12" fill="#555" font-family="Arial">💰 Lowest price guarantee  |  ✅ 60-day money-back guarantee  |  🎁 Free premium carrying case included</text>
+        <text x="70" y="558" font-size="13" font-weight="900" fill="#d81b60" font-family="Arial">⚠️ Only 23 units left in stock at this price! Next batch ships in 3 weeks.</text>
+      </svg>`
+    },
+    {
+      title: 'StyleHub Fashion - Social Media',
+      category: 'Social Media Management',
+      results: '+280% engagement | 15K followers | $45K sales',
+      image: `<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="shadow3" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.2"/>
+          </filter>
+        </defs>
+        <rect width="900" height="700" fill="#faf8ff"/>
+        <rect x="40" y="20" width="820" height="660" fill="white" rx="16" filter="url(#shadow3)"/>
+        
+        <text x="60" y="70" font-size="26" font-weight="900" fill="#333" font-family="Arial">APRIL 2024 - CONTENT STRATEGY RESULTS</text>
+        <text x="60" y="100" font-size="13" fill="#d81b60" font-weight="bold" font-family="Arial">StyleHub Fashion - Instagram Strategy that Drove 280% Engagement Growth</text>
+        
+        <line x1="60" y1="120" x2="860" y2="120" stroke="#e0e0e0" stroke-width="2"/>
+        
+        <rect x="60" y="150" width="180" height="140" fill="#fff3e0" rx="10" stroke="#ffb74d" stroke-width="2"/>
+        <text x="150" y="180" font-size="14" font-weight="900" text-anchor="middle" fill="#e65100" font-family="Arial">MONDAY</text>
+        <text x="150" y="210" font-size="12" text-anchor="middle" fill="#333" font-family="Arial">Trending Reel</text>
+        <text x="150" y="235" font-size="10" text-anchor="middle" fill="#666" font-family="Arial">"Spring Fashion Haul"</text>
+        <text x="150" y="265" font-size="11" fill="#28a745" font-weight="bold" text-anchor="middle" font-family="Arial">34K views 8.2K likes</text>
+        
+        <rect x="270" y="150" width="180" height="140" fill="#e8f5e9" rx="10" stroke="#81c784" stroke-width="2"/>
+        <text x="360" y="180" font-size="14" font-weight="900" text-anchor="middle" fill="#2e7d32" font-family="Arial">TUESDAY</text>
+        <text x="360" y="210" font-size="12" text-anchor="middle" fill="#333" font-family="Arial">How-To Content</text>
+        <text x="360" y="235" font-size="10" text-anchor="middle" fill="#666" font-family="Arial">"5 Ways to Style a Blazer"</text>
+        <text x="360" y="265" font-size="11" fill="#28a745" font-weight="bold" text-anchor="middle" font-family="Arial">28K views 5.6K likes</text>
+        
+        <rect x="480" y="150" width="180" height="140" fill="#f3e5f5" rx="10" stroke="#ba68c8" stroke-width="2"/>
+        <text x="570" y="180" font-size="14" font-weight="900" text-anchor="middle" fill="#6a1b9a" font-family="Arial">WEDNESDAY</text>
+        <text x="570" y="210" font-size="12" text-anchor="middle" fill="#333" font-family="Arial">Behind-Scenes</text>
+        <text x="570" y="235" font-size="10" text-anchor="middle" fill="#666" font-family="Arial">Photoshoot Stories</text>
+        <text x="570" y="265" font-size="11" fill="#28a745" font-weight="bold" text-anchor="middle" font-family="Arial">12K views 2.1K likes</text>
+        
+        <rect x="690" y="150" width="170" height="140" fill="#e0f2f1" rx="10" stroke="#4db6ac" stroke-width="2"/>
+        <text x="775" y="180" font-size="14" font-weight="900" text-anchor="middle" fill="#00695c" font-family="Arial">FRIDAY</text>
+        <text x="775" y="210" font-size="12" text-anchor="middle" fill="#333" font-family="Arial">Sale Alert</text>
+        <text x="775" y="235" font-size="10" text-anchor="middle" fill="#666" font-family="Arial">"Flash Sale 40%"</text>
+        <text x="775" y="265" font-size="11" fill="#28a745" font-weight="bold" text-anchor="middle" font-family="Arial">51K views 12.8K likes</text>
+        
+        <line x1="60" y1="310" x2="860" y2="310" stroke="#e0e0e0" stroke-width="2"/>
+        
+        <rect x="60" y="340" width="800" height="120" fill="#f0f4ff" rx="10" stroke="#b3d9ff" stroke-width="2"/>
+        <text x="80" y="375" font-size="14" font-weight="900" fill="#333" font-family="Arial">📊 MONTHLY PERFORMANCE METRICS:</text>
+        <text x="80" y="405" font-size="12" fill="#555" font-family="Arial">• Average Reach: 18,400 per post  |  • Engagement Rate: 9.4% (Industry avg: 1.5%)  |  • New Followers: +3,800</text>
+        <text x="80" y="430" font-size="12" fill="#555" font-family="Arial">• Top Content: Reels (avg 38K views)  |  • Conversion Rate: 4.2%  |  • Sales Generated: $12,400</text>
+        
+        <rect x="60" y="480" width="800" height="160" fill="#fff3cd" rx="10" stroke="#ffc107" stroke-width="2"/>
+        <text x="80" y="515" font-size="14" font-weight="900" fill="#333" font-family="Arial">💡 GROWTH STRATEGY IMPLEMENTED:</text>
+        <text x="80" y="545" font-size="12" fill="#555" font-family="Arial">→ Increased Reel uploads to 4x weekly (increased algorithm visibility by 340%)  |  → Added direct swipe-up links to products</text>
+        <text x="80" y="570" font-size="12" fill="#555" font-family="Arial">→ Partnered with 8 micro-influencers (combined 120K followers)  |  → Daily Story engagement & DM responses (community trust)</text>
+        <text x="80" y="595" font-size="12" fill="#555" font-family="Arial">→ A/B tested 15+ caption styles & posting times  |  → Implemented user-generated content carousel (authenticity boost)</text>
+        <text x="80" y="620" font-size="13" font-weight="900" fill="#d81b60" font-family="Arial">RESULT: 280% engagement growth in 90 days + Consistent 4-5 figure monthly revenue from social</text>
+      </svg>`
+    },
+  ];
+
+  return (
+    <div className="w-full min-h-screen bg-white" style={{ fontFamily: "'Poppins', 'Georgia', serif" }}>
+      {/* Navigation */}
+      <nav className="fixed w-full top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-pink-100">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="text-2xl font-black bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+            STEPHANIE VA
+          </div>
+          <div className="hidden md:flex gap-8 text-sm font-semibold">
+            <a href="#about" className="text-gray-600 hover:text-pink-600 transition">About</a>
+            <a href="#services" className="text-gray-600 hover:text-pink-600 transition">Services</a>
+            <a href="#portfolio" className="text-gray-600 hover:text-pink-600 transition">Portfolio</a>
+            <a href="#testimonials" className="text-gray-600 hover:text-pink-600 transition">Testimonials</a>
+            <a href="#contact" className="text-gray-600 hover:text-pink-600 transition">Contact</a>
+          </div>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden">
+            {isMenuOpen ? <X className="text-pink-600" size={28} /> : <Menu className="text-pink-600" size={28} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-40 pb-24 px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-200 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-rose-100 rounded-full blur-3xl opacity-40"></div>
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 bg-pink-100 text-pink-700 px-4 py-2 rounded-full text-sm font-bold mb-6">
+            <Zap size={16} />
+            🎉 Limited Availability - Only Accepting 3 New Clients This Month
+          </div>
+
+          <h1 className="text-6xl md:text-7xl font-black text-gray-900 leading-tight mb-6">
+            Grow Your Business <span className="bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">Without The Headache</span>
+          </h1>
+
+          <p className="text-2xl text-gray-700 mb-8 max-w-2xl leading-relaxed">
+            Let me handle your admin, marketing & growth while you focus on what matters. Real results. Affordable rates. Available for long-term partnerships.
+          </p>
+
+          <div className="flex flex-col md:flex-row gap-4 mb-12">
+            <a href="#contact" className="px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition transform hover:scale-105 flex items-center justify-center gap-2">
+              <MessageCircle size={20} />
+              Get Started (WhatsApp)
+            </a>
+            <a href="mailto:stephaniebcabug@gmail.com" className="px-8 py-4 border-3 border-pink-600 text-pink-600 rounded-xl font-bold text-lg hover:bg-pink-50 transition">
+              Email Inquiry
+            </a>
+          </div>
+
+          <div className="grid grid-cols-4 gap-4 max-w-2xl">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="bg-white/80 backdrop-blur border border-pink-100 rounded-lg p-4 text-center hover:shadow-lg transition">
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="text-2xl font-black text-pink-600">{stat.number}</div>
+                <div className="text-xs text-gray-600 font-semibold">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 px-6 bg-gradient-to-b from-pink-50/50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h2 className="text-5xl font-black text-gray-900">
+                Who's Behind This?
+              </h2>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Hi! I'm Stephanie. For the last 2+ years, I've been helping e-commerce businesses scale on Shopify and eBay. I've managed everything from product listings with SEO optimization to building email lists that actually convert.
+              </p>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Now I'm offering my full range of skills to businesses that need help with their admin, marketing, and growth. No fluff. No excuses. Just real, measurable results at affordable rates ($4/hour, negotiable for long-term contracts).
+              </p>
+              
+              <div className="space-y-3 pt-6 border-t-2 border-pink-200">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="text-pink-600 mt-1 flex-shrink-0" size={24} />
+                  <div>
+                    <div className="font-bold text-gray-900">✓ 2+ Years Proven Track Record</div>
+                    <div className="text-sm text-gray-600">Managed hundreds of successful campaigns</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="text-pink-600 mt-1 flex-shrink-0" size={24} />
+                  <div>
+                    <div className="font-bold text-gray-900">✓ Available Monday-Friday Full-Time</div>
+                    <div className="text-sm text-gray-600">Dedicated to your success, not juggling 10 clients</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="text-pink-600 mt-1 flex-shrink-0" size={24} />
+                  <div>
+                    <div className="font-bold text-gray-900">✓ Long-Term Focused</div>
+                    <div className="text-sm text-gray-600">Looking for clients I can grow with, not one-time gigs</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-pink-100 to-rose-100 rounded-2xl p-12 border-3 border-pink-200">
+              <div className="space-y-8">
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="text-pink-600 font-black text-3xl mb-2">$4/hr</div>
+                  <div className="text-gray-700 font-bold">Professional Virtual Assistant</div>
+                  <div className="text-sm text-gray-600 mt-2">That's 50% cheaper than US rates, full professional quality</div>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="text-pink-600 font-black text-3xl mb-2">1-2 Week</div>
+                  <div className="text-gray-700 font-bold">Onboarding Process</div>
+                  <div className="text-sm text-gray-600 mt-2">Quick integration, minimal setup needed, fast productivity</div>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="text-pink-600 font-black text-3xl mb-2">📍 Philippines</div>
+                  <div className="text-gray-700 font-bold">Iligan City</div>
+                  <div className="text-sm text-gray-600 mt-2">Reliable, dedicated, professional service you can count on</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl font-black text-gray-900 mb-6 text-center">
+            Here's What I Can Do For You
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            9 core services that work together to grow your business fast
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {services.map((service) => (
+              <div 
+                key={service.id} 
+                onMouseEnter={() => setHoveredService(service.id)}
+                onMouseLeave={() => setHoveredService(null)}
+                className="group bg-white border-2 border-pink-200 rounded-xl p-8 hover:shadow-2xl transition transform hover:scale-105 hover:border-pink-600 cursor-pointer"
+              >
+                <div className="text-5xl mb-4 group-hover:scale-125 transition">{service.icon}</div>
+                <h3 className="text-xl font-black text-gray-900 mb-2">{service.name}</h3>
+                <p className="text-gray-600 mb-4 font-semibold">{service.description}</p>
+                <div className="bg-pink-50 rounded-lg px-4 py-2 text-pink-700 font-bold text-sm">
+                  💡 {service.benefit}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-24 px-6 bg-gradient-to-b from-white to-pink-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl font-black text-gray-900 mb-6 text-center">
+            Real Results. Real Clients.
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
+            Check out actual work samples with real revenue numbers
+          </p>
+          
+          <div className="space-y-8">
+            {workExamples.map((example, idx) => (
+              <div key={idx} className="bg-white rounded-2xl overflow-hidden border-2 border-pink-200 hover:shadow-2xl transition">
+                <div className="grid md:grid-cols-3 gap-0">
+                  <div className="md:col-span-2 p-8">
+                    <div className="text-sm text-pink-600 font-black mb-2 uppercase">{example.category}</div>
+                    <h3 className="text-3xl font-black text-gray-900 mb-4">{example.title}</h3>
+                    <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-400 rounded-xl p-6 mb-4">
+                      <div className="text-sm text-green-700 font-bold mb-2">📈 RESULTS DELIVERED:</div>
+                      <div className="text-2xl font-black text-green-700">{example.results}</div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-1 bg-gray-100 p-4 flex items-center justify-center overflow-hidden">
+                    <svg viewBox="0 0 900 650" className="w-full h-auto max-h-96" dangerouslySetInnerHTML={{ __html: example.image }} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl font-black text-gray-900 mb-6 text-center">
+            What Clients Say
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-8 border-2 border-pink-200 hover:shadow-xl transition">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={20} className="fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-6 italic font-medium leading-relaxed">
+                  "{testimonial.text}"
+                </p>
+                <div className="border-t-2 border-pink-200 pt-4">
+                  <div className="font-bold text-gray-900">{testimonial.name}</div>
+                  <div className="text-sm text-gray-600">{testimonial.company}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-6 bg-gradient-to-r from-pink-600 to-rose-600">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <Award className="w-16 h-16 mx-auto mb-6" />
+          <h2 className="text-5xl font-black mb-6">
+            Ready to Scale Your Business?
+          </h2>
+          <p className="text-2xl mb-8 opacity-90">
+            Limited spots available this month. Let's talk about your goals.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="https://wa.me/639851884304" target="_blank" rel="noopener noreferrer" className="px-10 py-4 bg-white text-pink-600 rounded-xl font-bold text-lg hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center gap-2">
+              <MessageCircle size={20} />
+              Message on WhatsApp
+            </a>
+            <a href="mailto:stephaniebcabug@gmail.com" className="px-10 py-4 border-3 border-white text-white rounded-xl font-bold text-lg hover:bg-white/20 transition">
+              <Mail size={20} className="inline mr-2" />
+              Send Email
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-6 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl font-black text-gray-900 mb-16 text-center">Contact & Availability</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <a href="https://wa.me/639851884304" target="_blank" rel="noopener noreferrer" className="bg-white border-2 border-pink-200 rounded-xl p-8 text-center hover:shadow-xl transition transform hover:scale-105">
+              <MessageCircle className="w-12 h-12 text-pink-600 mx-auto mb-4" />
+              <h3 className="text-2xl font-black text-gray-900 mb-2">WhatsApp</h3>
+              <p className="text-pink-600 font-bold text-lg mb-2">+63 985 188 4304</p>
+              <p className="text-gray-600">Fastest response time</p>
+            </a>
+
+            <a href="mailto:stephaniebcabug@gmail.com" className="bg-white border-2 border-pink-200 rounded-xl p-8 text-center hover:shadow-xl transition transform hover:scale-105">
+              <Mail className="w-12 h-12 text-pink-600 mx-auto mb-4" />
+              <h3 className="text-2xl font-black text-gray-900 mb-2">Email</h3>
+              <p className="text-pink-600 font-bold text-lg mb-2">stephaniebcabug@gmail.com</p>
+              <p className="text-gray-600">Detailed inquiries welcome</p>
+            </a>
+
+            <div className="bg-white border-2 border-pink-200 rounded-xl p-8 text-center">
+              <MapPin className="w-12 h-12 text-pink-600 mx-auto mb-4" />
+              <h3 className="text-2xl font-black text-gray-900 mb-2">Location</h3>
+              <p className="text-pink-600 font-bold text-lg mb-2">Iligan City, Philippines</p>
+              <p className="text-gray-600">Available Monday-Friday</p>
+            </div>
+
+            <div className="bg-white border-2 border-pink-200 rounded-xl p-8 text-center">
+              <DollarSign className="w-12 h-12 text-pink-600 mx-auto mb-4" />
+              <h3 className="text-2xl font-black text-gray-900 mb-2">Rates</h3>
+              <p className="text-pink-600 font-bold text-lg mb-2">$4/hour</p>
+              <p className="text-gray-600">Negotiable for long-term</p>
+            </div>
+          </div>
+
+          <div className="mt-16 bg-gradient-to-r from-yellow-100 to-orange-100 border-3 border-yellow-500 rounded-2xl p-12 text-center max-w-2xl mx-auto">
+            <Clock className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-black text-gray-900 mb-4">⏰ Limited Availability</h3>
+            <p className="text-lg text-gray-800 mb-6 font-bold">
+              Currently accepting only 3 new long-term clients this month. First come, first served.
+            </p>
+            <a href="https://wa.me/639851884304" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 bg-orange-600 text-white font-black rounded-lg hover:bg-orange-700 transition">
+              Reserve Your Spot Now
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 py-12 px-6 text-center">
+        <div className="max-w-6xl mx-auto">
+          <p className="mb-4">© 2024 Stephanie VA | Iligan City, Philippines</p>
+          <p className="text-sm">Built to convert | Professional | Affordable | Results-Driven</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
